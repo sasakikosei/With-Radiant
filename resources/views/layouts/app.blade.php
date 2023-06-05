@@ -14,13 +14,13 @@
         @include('commons.navbar')
 
         <div class="container mx-auto">
-            {{-- エラーメッセージ --}}
-            @include('commons.error_messages')
+        {{-- エラーメッセージ --}}
+        @include('commons.error_messages')
 
-            @yield('content')
-            
+        @yield('content')
         </div>
         
+        {{-- フッター --}}
         @include('commons.footer')
         
     </body>
