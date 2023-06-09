@@ -1,38 +1,45 @@
 
 
-    <div class="prose mx-auto text-center">
-        <h2>ユーザ一覧</h2>
+<div class="prose mx-auto text-center p-4 mb-6 border border-gray-300 rounded-lg">
+      <h2>ユーザ一覧</h2>
+</div>    
+    
+  <form method="GET" class="mb-5" action="">
+    @csrf
+    <div class="form group row">
+      <label class="col-sm-2 col-form-label" for="name">ユーザー名</label>
+      <div class="col-sm-8">
+        <input placeholder="例：ハリー" class="form-control p-2 border border-gray-300 rounded-lg" type="search" name="name">
+      </div>
+      <div class="form group row">
+        <label class="col-sm-2 col-form-label" for="genser">性別</label>
+        <div class="col-sm-8">
+          <input type="radio" value="男性" name="gender">男性
+          <input type="radio" value="女性" name="gender">女性
+        </div>
+      </div>
+      <div class="form group">
+        <input type="submit" name="commit" value="検索" class="btn btn-primary text-white bg-blue-400 hover:bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2" data-disable-with="検索">
+      </div>
     </div>
-
-
-<nav aria-label="Page navigation example">
-  <ul class="inline-flex items-center -space-x-px">
-    <li>
-      <a href="#" class="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-        <span class="sr-only">Previous</span>
-        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-      </a>
-    </li>
-    <li>
-      <a href="#" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-    </li>
-    <li>
-      <a href="#" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-    </li>
-    <li>
-      <a href="#" aria-current="page" class="z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-    </li>
-    <li>
-      <a href="#" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
-    </li>
-    <li>
-      <a href="#" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
-    </li>
-    <li>
-      <a href="#" class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-        <span class="sr-only">Next</span>
-        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-      </a>
-    </li>
-  </ul>
-</nav>
+    </form>
+    
+@if (isset($users))
+    <ul class="list-none flex">
+        @foreach ($users as $user)
+            <li class="items-center gap-x-2 mb-4 inline-block px-3">
+                <div class="block max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow">
+                    <div>
+                        <a class="link link-hover text-info text-center mt-6 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg w-full px-3 py-1" href="{{ route('users.show', $user->id) }}">{{ $user->name }}</a>
+                    </div>
+                    <div class="pt-1"><h5>性別：{{$user->gender}}</h5></div>
+                    <div><h5>ランク：{{$user->rank}}</h5></div>
+                    
+                </div>
+            </li>
+          
+        @endforeach
+    </ul>
+    {{ $users->links('vendor.pagination.custom') }}
+@endif
+    
