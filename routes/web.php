@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RecruitController;
+use App\Http\Controllers\WatchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,13 +21,13 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('users',UsersController::class,['only' => ['index','show']]);
 Route::resource('recruit',RecruitController::class,['only' => ['index','show']]);
+Route::resource('watch',WatchController::class,['only' => ['index','show']]);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -46,7 +47,20 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-Route::group(['middleware' => ['auth']], function () {
-    Route::resource('recruit', RecruitController::class, ['only' => ['store', 'destroy']]);
+Route::middleware('auth')->group(function () {
+    Route::group(['prefix' => 'recruit/{id}'], function () {
+    Route::resource('recruit', RecruitController::class, ['only' => ['store','update','edit', 'destroy','post']]);
+    Route::get('create', [RecruitController::class, 'create'])->name('recruit.create');
+    Route::post('create', [RecruitController::class, 'store']);
+    });
 });
+
+Route::middleware('auth')->group(function () {
+    Route::group(['prefix' => 'watch/{id}'], function () {
+    Route::resource('watch', WatchController::class, ['only' => ['store','update','edit', 'destroy','post']]);
+    Route::get('create', [WatchController::class, 'create'])->name('watch.create');
+    Route::post('create', [WatchController::class, 'store']);
+    });
+});
+
     

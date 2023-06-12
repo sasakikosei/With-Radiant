@@ -10,12 +10,34 @@ class UsersController extends Controller
 {
     public function index(Request $request)                                     
     {
-        $users = User::orderBy('id', 'desc')->paginate(3); 
+        $query = User::query();
         
-        $search = $request->input('search');
-    
+        $name = $request->input('name');
+        
+        $gender = $request->input('gender');
+        
+        $rank = $request->input('rank');
+        
+        if(!empty($name))
+        {
+           $query->where('name','like','%'.$name.'%');
+        }
+        
+        if(!empty($gender)) {
+            $query->where('gender', 'LIKE', $gender);
+        }
+        
+        if(!empty($rank)) {
+            $query->where('rank', 'LIKE', $rank);
+        }
+        
+        $users = $query->orderBy('id','desc')->paginate(3);
+        
         return view('users.index', [                        
             'users' => $users,
+            'name' => $name,
+            'gender' => $gender,
+            'rank' => $rank,
         ]);                                                 
     }                                                       
     
@@ -26,6 +48,17 @@ class UsersController extends Controller
         return view('users.show', [
             'user' => $user,
         ]);
+        
+        if(\Auth::user()) { 
+            
+            $users = \Auth::user();
+            
+            if($users === $user){
+                return view('users.mypage', [
+                    'user' => $user,
+                ]);
+            }
+        }
     }  
     
     public function edit($id)
@@ -50,7 +83,7 @@ class UsersController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
-            ]);
+        ]);
         
         $user = new User;
         $user->name= $request->name;
