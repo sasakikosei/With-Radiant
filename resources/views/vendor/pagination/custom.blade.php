@@ -25,7 +25,7 @@
         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
                 {{-- ★日本語修正★ --}}
-                <p class="text-4xl text-gray-700 leading-5">
+                <p class="text-xl text-gray-700 leading-5">
                     <span class="font-medium">{{ $paginator->total() }}</span>件中
                     @if ($paginator->firstItem())
                         <span class="font-medium">{{ $paginator->firstItem() }}</span>

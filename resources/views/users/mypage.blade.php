@@ -5,11 +5,10 @@
     <div class="prose mx-auto text-center p-4 m-6 border border-gray-300 rounded-lg">
         <h2>マイページ</h2>
     </div>
-    <div class="flex justify-end">
+    
     <a href="{{ route('users.edit', Auth::user()->id) }}">
-    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">編集</button>
+    <button type="button" class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-4 mt-6 ms-88">編集</button>
     </a>
-    </div>
     
     <table class="table-auto flex justify-center">
       <tbody>
@@ -68,6 +67,6 @@
       </tbody>
     </table>
     <a href="/">
-    <button type="button" class="text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800">戻る</button>
+    <button type="button" class="text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ms-88">戻る</button>
     </a>
 @endsection

@@ -31,7 +31,7 @@ class UsersController extends Controller
             $query->where('rank', 'LIKE', $rank);
         }
         
-        $users = $query->orderBy('id','desc')->paginate(3);
+        $users = $query->orderBy('id','desc')->paginate(10);
         
         return view('users.index', [                        
             'users' => $users,
@@ -151,5 +151,4 @@ class UsersController extends Controller
         
         return redirect('/');
     }
-    
 }

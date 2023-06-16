@@ -1,16 +1,16 @@
 <div class="prose mx-auto text-center p-4 mb-6 border border-gray-300 rounded-lg">
       <h2>ユーザ一覧</h2>
 </div>    
-    
+<div class="container mx-auto w-[50rem]">
   <form method="GET" class="mb-5" action="{{ route('users.index') }}">
     @csrf
     <div class="form group row">
       <label class="col-sm-2 col-form-label" for="name">ユーザー名</label>
       <div class="col-sm-8">
-        <input placeholder="例：ハリー" class="form-control p-2 border border-gray-300 rounded-lg" type="text" name="name" value="{{ $name }}">
+        <input placeholder="例：ハリー" class="form-control p-2 mb-4 border border-gray-300 rounded-lg" type="text" name="name" value="{{ $name }}">
       </div>
       <label class="block mb-2 text-sm font-medium text-gray-900">性別</label>
-        <div class="form-control w-1/3 mb-4">
+        <div class="form-control mb-4">
             <select name="gender" class="select select-bordered">
                 <option disabled selected>選択してください</option>
                 <option @if($gender === '男性') selected @endif name="gender" value="男性">男性</option>
@@ -19,7 +19,7 @@
             </select>
         </div>
         <label class="block mb-2 text-sm font-medium text-gray-900">ランク</label>
-        <div class="form-control w-1/3 mb-4">
+        <div class="form-control mb-4">
             <select name="rank" class="select select-bordered">
                 <option disabled selected>選択してください</option>
                 <option @if($rank === 'アイアン1') selected @endif name="rank" value="アイアン1">アイアン1</option>
@@ -53,12 +53,12 @@
     </form>
     
 @if (isset($users))
-    <ul class="list-none flex">
+    <ul class="list-none mb-6">
         @foreach ($users as $user)
-            <li class="items-center gap-x-2 mb-4 inline-block px-3">
+            <li class="mb-4 me-8">
                 <div class="block max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow">
                     <div>
-                        <a class="link link-hover text-info text-center mt-6 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg w-full px-3 py-1" href="{{ route('users.show', $user->id) }}">{{ $user->name }}</a>
+                        <a class="link link-hover text-info text-center text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg px-3 py-1 mt-6" href="{{ route('users.show', $user->id) }}">{{ $user->name }}</a>
                     </div>
                     <div class="pt-1"><h5>性別：{{$user->gender}}</h5></div>
                     <div><h5>ランク：{{$user->rank}}</h5></div>
@@ -70,3 +70,4 @@
     </ul>
     {{ $users->links('vendor.pagination.custom') }}
 @endif
+</div>

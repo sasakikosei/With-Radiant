@@ -18,7 +18,7 @@ use App\Http\Controllers\WatchController;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('top');
 });
 
 Route::get('/dashboard', function () {
@@ -26,8 +26,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('users',UsersController::class,['only' => ['index','show']]);
-Route::resource('recruit',RecruitController::class,['only' => ['index','show']]);
-Route::resource('watch',WatchController::class,['only' => ['index','show']]);
+Route::resource('recruit',RecruitController::class,['only' => ['index','show','destroy']]);
+Route::resource('watch',WatchController::class,['only' => ['index','show','destroy']]);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -43,23 +43,29 @@ Route::middleware('auth')->group(function () {
         Route::get('edit', [UsersController::class, 'edit'])->name('users.edit');
         Route::post('edit', [UsersController::class, 'store'])->name('users.store');
         Route::put('edit', [UsersController::class, 'update'])->name('users.update');
-        Route::delete('edit', [UsersController::class, 'delete'])->name('users.delete');
+        Route::delete('edit', [UsersController::class, 'destroy'])->name('users.destroy');
     });
 });
 
 Route::middleware('auth')->group(function () {
     Route::group(['prefix' => 'recruit/{id}'], function () {
-    Route::resource('recruit', RecruitController::class, ['only' => ['store','update','edit', 'destroy','post']]);
     Route::get('create', [RecruitController::class, 'create'])->name('recruit.create');
-    Route::post('create', [RecruitController::class, 'store']);
+    Route::post('create', [RecruitController::class, 'store'])->name('recruit.store');
+    Route::delete('show', [RecruitController::class, 'destroy'])->name('recruit.destroy');
+    Route::get('edit', [RecruitController::class, 'edit'])->name('recruit.edit');
+    Route::post('edit', [RecruitController::class, 'store'])->name('recruit.edit.store');
+    Route::put('edit', [RecruitController::class, 'update'])->name('recruit.update');
     });
 });
 
 Route::middleware('auth')->group(function () {
     Route::group(['prefix' => 'watch/{id}'], function () {
-    Route::resource('watch', WatchController::class, ['only' => ['store','update','edit', 'destroy','post']]);
     Route::get('create', [WatchController::class, 'create'])->name('watch.create');
-    Route::post('create', [WatchController::class, 'store']);
+    Route::post('create', [WatchController::class, 'store'])->name('watch.store');
+    Route::delete('show', [WatchController::class, 'destroy'])->name('watch.destroy');
+    Route::get('edit', [WatchController::class, 'edit'])->name('watch.edit');
+    Route::post('edit', [WatchController::class, 'store'])->name('watch.edit.store');
+    Route::put('edit', [WatchController::class, 'update'])->name('watch.update');
     });
 });
 
