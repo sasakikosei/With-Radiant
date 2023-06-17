@@ -5,7 +5,7 @@
         <h2>ユーザ詳細</h2>
     </div>
 
-    <table class="table-auto flex justify-center">
+    <table class="mx-auto w-[40rem]">
       <tbody>
         <tr>
           <td class="border px-4 py-2">名前</td>
@@ -63,7 +63,7 @@
     </table>
     
     <a href="{{ route('users.index') }}">
-    <button type="button" class="text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ms-88">戻る</button>
+    <button type="button" class="text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ms-80">戻る</button>
     </a>
 
 @endsection

@@ -7,12 +7,12 @@
  </a>
 
 @if (isset($watch_members))
-    <ul class="list-none mb-6 w-[40rem]">
+    <ul class="list-none mb-6">
         @foreach ($watch_members as $watch_member)
-            <li class="mb-4 w-[40rem]">
+            <li class="mb-4">
                 <div class="p-4 bg-white border border-gray-200 rounded-lg shadow">
                     <div>
-                        <a class="link link-hover text-info text-center mt-6 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg w-full px-3 py-1" href="{{ route('watch.show', $watch_member->id) }}">{{ $watch_member->match_team }}</a>
+                        <a class="link link-hover text-info text-center text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg px-3 py-1 mt-6" href="{{ route('watch.show', $watch_member->id) }}">{{ $watch_member->match_team }}</a>
                     </div>
                     <div class="pt-2"><h5>試合開始時間：{{$watch_member->time}}</h5></div>
                     <div class="pt-2"><h5>応援チーム：{{$watch_member->root_team}}</h5></div>
