@@ -7,7 +7,8 @@
         <h2>募集編集</h2>
     </div>
     
-<form method="POST" class="mb-5" action="{{ route('recruit.update', Auth::user()->id,) }}">
+<form method="POST" class="mb-5" action="{{ route('recruit.update', $recruit_members->id) }}">
+        @method('put')
         @csrf
     <label class="block mb-2 text-sm font-medium text-gray-900">募集目的</label>
         <div class="form-control mb-4">

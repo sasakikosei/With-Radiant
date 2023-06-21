@@ -46,4 +46,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Recruit::class);
     }
+    
+    public function watch()
+    {
+        return $this->hasMany(Watch::class);
+    }
+    
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

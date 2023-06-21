@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('recruit_members', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->string('purpose')->nullable(true);
+            $table->unsignedBigInteger('user_id');
+            $table->string('purpose');
             $table->string('rank')->nullable(true);
             $table->string('content')->nullable(true);
             $table->timestamps();

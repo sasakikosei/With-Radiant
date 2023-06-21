@@ -3,11 +3,12 @@
 @section('content')
     
 <div class="container mx-auto w-[40rem]">
-    <div class="prose mx-auto text-center p-4 m-6 border border-gray-300 rounded-lg">
+    <div class="text-center text-2xl font-bold text-center p-4 m-6 border border-gray-300 rounded-lg">
         <h2>watch party募集編集</h2>
     </div>
     
-    <form method="POST" class="mb-5" action="{{ route('watch.update', Auth::user()->id,) }}">
+    <form method="POST" class="mb-5" action="{{ route('watch.update', $watch_members->id) }}">
+        @method('put')
         @csrf
         <div class="mb-2">
             <label class="block mb-2 text-sm font-medium text-gray-900">対戦チーム</label>

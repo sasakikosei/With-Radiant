@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Recruit; 
+use App\Models\Comment; 
 
 class RecruitController extends Controller
 {
@@ -29,11 +30,14 @@ class RecruitController extends Controller
       {
         $recruit_members = Recruit::findOrFail($id);
         
+        $comments = Comment::orderBy('id','desc')->get();
+        
         $user_id = \Auth::id();
      
         return view('recruit.show', [
             'recruit_members' => $recruit_members,
-            'user_id' => $user_id
+            'user_id' => $user_id,
+            'comments' => $comments
         ]);
       } 
       
@@ -93,7 +97,7 @@ class RecruitController extends Controller
         
         $recruit->save();
         
-        return back();
+        return redirect('/recruit');
     }
     
 }

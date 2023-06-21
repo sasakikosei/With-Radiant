@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RecruitController;
 use App\Http\Controllers\WatchController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,14 @@ use App\Http\Controllers\WatchController;
 
 Route::get('/', function () {
     return view('top');
+});
+
+Route::get('/privacy', function () {
+    return view('privacy');
+});
+
+Route::get('/tos', function () {
+    return view('tos');
 });
 
 Route::get('/dashboard', function () {
@@ -55,6 +64,8 @@ Route::middleware('auth')->group(function () {
     Route::get('edit', [RecruitController::class, 'edit'])->name('recruit.edit');
     Route::post('edit', [RecruitController::class, 'store'])->name('recruit.edit.store');
     Route::put('edit', [RecruitController::class, 'update'])->name('recruit.update');
+    Route::post('show',[CommentController::class, 'store'])->name('rcomment.store');
+    Route::delete('show', [CommentController::class, 'destroy'])->name('comment.destroy');
     });
 });
 
@@ -66,7 +77,10 @@ Route::middleware('auth')->group(function () {
     Route::get('edit', [WatchController::class, 'edit'])->name('watch.edit');
     Route::post('edit', [WatchController::class, 'store'])->name('watch.edit.store');
     Route::put('edit', [WatchController::class, 'update'])->name('watch.update');
+    Route::post('',[CommentController::class, 'store'])->name('wcomment.store');
     });
 });
+
+
 
     

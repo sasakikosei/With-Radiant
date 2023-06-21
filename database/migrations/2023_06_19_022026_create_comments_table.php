@@ -13,16 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('watch_members', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('content')->nullable(true);
-            $table->string('match_team');
-            $table->string('root_team')->nullable(true);
-            $table->string('time');
+            $table->string('comment')->nullable(true);
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('recruit_id')->nullable(true);
+            $table->unsignedBigInteger('watch_id')->nullable(true);
             
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('recruit_id')->references('id')->on('recruit_members');
+            $table->foreign('watch_id')->references('id')->on('watch_members');
         });
     }
 
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('watch_members');
+        Schema::dropIfExists('comments');
     }
 };

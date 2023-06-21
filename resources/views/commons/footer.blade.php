@@ -6,13 +6,10 @@
                 </a>
                 <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0">
                     <li>
-                        <a href="#" class="hover:underline mr-6 ">利用規約</a>
+                        <a href="/tos" class="hover:underline mr-6 ">利用規約</a>
                     </li>
                     <li>
-                        <a href="#" class="hover:underline mr-6">プライバシーポリシー</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:underline mr-6 ">お問い合わせ</a>
+                        <a href="/privacy" class="hover:underline mr-6">プライバシーポリシー</a>
                     </li>
                 </ul>
             </div>

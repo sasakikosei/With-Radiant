@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Watch; 
+use App\Models\Comment; 
 
 class WatchController extends Controller
 {
@@ -20,11 +21,14 @@ class WatchController extends Controller
       {
         $watch_members = Watch::findOrFail($id);
         
+        $comments = Comment::orderBy('id','desc')->get();
+        
         $user_id = \Auth::id();
      
         return view('watch.show', [
             'watch_members' => $watch_members,
-            'user_id' => $user_id
+            'user_id' => $user_id,
+            'comments' => $comments
         ]);
       } 
       
@@ -53,7 +57,9 @@ class WatchController extends Controller
         
         $watch->save();
         
-        return view('watch.index');
+        return view('recruit.index',[
+              'content' => $content,
+        ]);
       }
       
     public function destroy($id)
@@ -67,10 +73,10 @@ class WatchController extends Controller
     
     public function edit($id)
     {
-        $watch = Watch::findOrFail($id);
+        $watch_members = Watch::findOrFail($id);
         
         return view('watch.edit',[
-            'watch' => $watch,
+            'watch_members' => $watch_members,
         ]);
     }
     
@@ -86,6 +92,6 @@ class WatchController extends Controller
         
         $watch->save();
         
-        return back();
+        return redirect('/watch');
     }
 }
