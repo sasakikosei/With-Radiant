@@ -44,21 +44,10 @@ class UsersController extends Controller
     public function show($id)                               
     {
         $user = User::findOrFail($id);
-     
+        
         return view('users.show', [
             'user' => $user,
         ]);
-        
-        if(\Auth::user()) { 
-            
-            $users = \Auth::user();
-            
-            if($users === $user){
-                return view('users.mypage', [
-                    'user' => $user,
-                ]);
-            }
-        }
     }  
     
     public function edit($id)
@@ -82,7 +71,7 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|max:200',
         ]);
         
         $user = new User;

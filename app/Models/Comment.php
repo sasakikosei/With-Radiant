@@ -17,4 +17,14 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function recruit()
+    {
+        return $this->belongsTo(Recruit::class);
+    }
+    
+    public function watch()
+    {
+        return $this->belongsTo(Watch::class);
+    }
 }

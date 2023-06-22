@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Watch; 
 use App\Models\Comment; 
+use App\Models\User;
 
 class WatchController extends Controller
 {
@@ -28,7 +29,7 @@ class WatchController extends Controller
         return view('watch.show', [
             'watch_members' => $watch_members,
             'user_id' => $user_id,
-            'comments' => $comments
+            'comments' => $comments,
         ]);
       } 
       
@@ -57,9 +58,7 @@ class WatchController extends Controller
         
         $watch->save();
         
-        return view('recruit.index',[
-              'content' => $content,
-        ]);
+        return redirect('/watch');
       }
       
     public function destroy($id)

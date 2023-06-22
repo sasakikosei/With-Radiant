@@ -9,7 +9,7 @@ class Watch extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['content','user_id'];
+    protected $fillable = ['content','user_id','match_team','root_team','time'];
     
     protected $table = 'watch_members';
     

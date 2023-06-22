@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    
 <div class="prose mx-auto text-center p-4 mb-6 border border-gray-300 rounded-lg">
     <h2>募集詳細</h2>
 </div>
@@ -14,16 +13,16 @@
     <form method="POST" action="{{ route('watch.destroy', $watch_members->id) }}">
      @csrf
      @method('DELETE')
-     <button type="submit" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ms-2">削除する</button>
-     </form>
+     <button type="submit" onclick="return confirm('Delete id = {{ $watch_members->id }} ?')" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ms-2">削除</button>
+    </form>
   </div>
 @endif
 
-<table class="mx-auto w-[40rem]">
+    <table class="mx-auto w-[40rem]">
       <tbody>
         <tr>
           <td class="border px-4 py-2">名前</td>
-          <td class="border px-4 py-2"></td>
+          <td class="border px-4 py-2">{{$watch_members->user->name}}</td>
         </tr>
         <tr>
           <td class="border px-4 py-2">対戦チーム</td>
@@ -41,6 +40,14 @@
           <td class="border px-4 py-2">詳細</td>
           <td class="border px-4 py-2">{{$watch_members->content}}</td>
         </tr>
+        <tr>
+          <td class="border px-4 py-2">投稿日時</td>
+          <td class="border px-4 py-2">{{$watch_members->created_at}}</td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">更新日時</td>
+          <td class="border px-4 py-2">{{$watch_members->updated_at}}</td>
+        </tr>
     　</tbody>
     </table>
     
@@ -50,7 +57,7 @@
   <h2 class="text-2xl">コメント</h2>
   <div class="mt-4">
         <ul class="list-none">
-            @foreach ($comments as $comment)
+            @foreach ($watch_members->comments as $comment)
                 <li class="flex items-start gap-x-2 mb-4">
                 <div>
                         <div>
@@ -66,7 +73,7 @@
                                 <form method="POST" action="{{ route('comment.destroy', $comment->id) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-error btn-sm normal-case" 
+                                    <button type="submit" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-2" 
                                         onclick="return confirm('Delete id = {{ $comment->id }} ?')">削除</button>
                                 </form>
                             @endif
@@ -76,6 +83,7 @@
             </li>
             @endforeach
         </ul>
+</div>
   <div class="mt-4">
         <form method="POST" action="{{ route('wcomment.store', $watch_members->id) }}">
             @csrf
@@ -86,7 +94,6 @@
             <button type="submit" class="btn btn-primary btn-block normal-case">投稿する</button>
         </form>
     </div>
-  
 </div>
 @endsection
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Recruit; 
 use App\Models\Comment; 
+use App\Models\User;
 
 class RecruitController extends Controller
 {
@@ -37,7 +38,7 @@ class RecruitController extends Controller
         return view('recruit.show', [
             'recruit_members' => $recruit_members,
             'user_id' => $user_id,
-            'comments' => $comments
+            'comments' => $comments,
         ]);
       } 
       
@@ -54,6 +55,10 @@ class RecruitController extends Controller
       {
         $recruit = new Recruit;
         
+        $request->validate([
+            'purpose' => 'required|max:50',
+        ]);
+        
         $recruit->purpose = $request->purpose;
         $recruit->content = $request->content;
         $recruit->rank = $request->rank;
@@ -63,14 +68,12 @@ class RecruitController extends Controller
         
         $purpose = $request->input('purpose');
         
-        return view('recruit.index',[
-              'purpose' => $purpose,
-        ]);
+        return redirect('/recruit');
       }
     
     public function destroy($id)
     {
-        $recruit_members = \App\Models\Recruit::findOrFail($id);
+        $recruit_members = Recruit::findOrFail($id);
     
         $recruit_members->delete();
         
