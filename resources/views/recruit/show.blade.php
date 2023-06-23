@@ -53,32 +53,26 @@
     <div class="mt-4">
         <ul class="list-none">
             @foreach ($recruit_members->comments as $comment)
-                <li class="flex items-start gap-x-2 mb-4">
-                <div>
-                        <div>
-                            <a class="link link-hover text-info" href="{{ route('users.show', $comment->user->id) }}">{{ $comment->user->name }}</a>
-                            <span class="text-muted text-gray-500">{{ $comment->created_at }}</span>
+            <li class="flex items-start gap-x-2 mb-4">
+                        <div class="flex">
+                            <a class="link link-hover text-info me-8" href="{{ route('users.show', $comment->user->id) }}">{{ $comment->user->name }}</a>
+                            <p class="mb-2 me-8">{{ ($comment->comment) }}</p>
                         </div>
-                        <div>
-                            <p class="mb-2">{{ ($comment->comment) }}</p>
-                        </div>
-                <div>
                             @if (Auth::id() == $comment->user_id)
-                            <div class="flex">
                                 <form method="POST" action="{{ route('comment.destroy', $comment->id) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-2" 
+                                    <button type="submit" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-xs px-2 py-2 me-4" 
                                         onclick="return confirm('Delete id = {{ $comment->id }} ?')">削除</button>
                                 </form>
                             @endif
-                            </div>
-                    </div>
-                </div>
+                        <div>
+                            <span class="text-muted text-gray-500  ms-4">{{ $comment->created_at }}</span>
+                        </div>
             </li>
             @endforeach
         </ul>
-</div>
+    </div>
     <div class="mt-4">
         <form method="POST" action="{{ route('rcomment.store', $recruit_members->id) }}">
             @csrf

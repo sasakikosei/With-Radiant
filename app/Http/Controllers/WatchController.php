@@ -47,9 +47,14 @@ class WatchController extends Controller
         $watch = new Watch;
         
         $request->validate([
-            'match_team' => 'required|max:50',
+           'match_team' => 'required|max:50',
+           'time' => 'required|max:50',
+        ],
+        [
+           'match_team' => '対戦チームは必須です。',
+           'time' => '試合開始時間は必須です。'
         ]);
-            
+  
         $watch->content = $request->content;
         $watch->match_team = $request->match_team;
         $watch->root_team = $request->root_team;
@@ -82,6 +87,15 @@ class WatchController extends Controller
     public function update(Request $request, $id)
     {
         $watch = Watch::findOrFail($id);
+        
+        $request->validate([
+           'match_team' => 'required|max:50',
+           'time' => 'required|max:50',
+        ],
+        [
+           'match_team' => '対戦チームは必須です。',
+           'time' => '試合開始時間は必須です。'
+        ]);
         
         $watch->content= $request->content;
         $watch->match_team= $request->match_team;

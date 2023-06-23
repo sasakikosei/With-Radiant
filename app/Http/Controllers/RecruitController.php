@@ -57,6 +57,9 @@ class RecruitController extends Controller
         
         $request->validate([
             'purpose' => 'required|max:50',
+        ],    
+        [
+            'purpose' => '募集目的は必須です。',
         ]);
         
         $recruit->purpose = $request->purpose;
@@ -92,6 +95,13 @@ class RecruitController extends Controller
     public function update(Request $request, $id)
     {
         $recruit = Recruit::findOrFail($id);
+        
+        $request->validate([
+            'purpose' => 'required|max:50',
+        ],    
+        [
+            'purpose' => '募集目的は必須です。',
+        ]);
         
         $recruit->purpose= $request->purpose;
         $recruit->content= $request->content;

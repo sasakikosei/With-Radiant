@@ -12,11 +12,11 @@
         @csrf
         <div class="mb-2">
             <label class="block mb-2 text-sm font-medium text-gray-900">対戦チーム</label>
-            <input type="text" placeholder="例:チームA VS チームB" name="match_team" class="w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <input type="text" placeholder="必須　例:チームA VS チームB" name="match_team" class="w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         </div>
         <div class="mb-2">
             <label class="block mb-2 text-sm font-medium text-gray-900">試合開始時間</label>
-            <input type="text" placeholder="試合開始時間を記入してください" name="time" class="w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <input type="text" placeholder="必須　試合開始時間を記入してください" name="time" class="w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         </div>
         <div class="mb-2">
             <label class="block mb-2 text-sm font-medium text-gray-900">応援チーム</label>
@@ -32,5 +32,6 @@
     </a>
     <button type="submit" class="text-center mt-6 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg px-5 py-2.5">更新</button>
     </form>
+    </div>
 </div>
 @endsection

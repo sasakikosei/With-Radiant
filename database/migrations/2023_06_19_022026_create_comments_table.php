@@ -21,9 +21,9 @@ return new class extends Migration
             $table->unsignedBigInteger('recruit_id')->nullable(true);
             $table->unsignedBigInteger('watch_id')->nullable(true);
             
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('recruit_id')->references('id')->on('recruit_members');
-            $table->foreign('watch_id')->references('id')->on('watch_members');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('recruit_id')->references('id')->on('recruit_members')->onDelete('cascade');
+            $table->foreign('watch_id')->references('id')->on('watch_members')->onDelete('cascade');
         });
     }
 

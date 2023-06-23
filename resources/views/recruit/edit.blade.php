@@ -13,7 +13,7 @@
     <label class="block mb-2 text-sm font-medium text-gray-900">募集目的</label>
         <div class="form-control mb-4">
             <select name="purpose" class="select select-bordered">
-                <option disabled selected>選択してください</option>
+                <option disabled selected>必須　選択してください</option>
                 <option name="purpose" value="フレンド">フレンド</option>
                 <option name="purpose" value="コンペ">コンペ</option>
                 <option name="purpose" value="アンレ">アンレ</option>
@@ -58,6 +58,7 @@
     </a>
     <button type="submit" class="text-center mt-6 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg px-5 py-2.5">更新</button>
     </form>
+    </div>
 </div>
 
 @endsection

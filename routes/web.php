@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
         Route::get('edit', [UsersController::class, 'edit'])->name('users.edit');
         Route::post('edit', [UsersController::class, 'store'])->name('users.store');
         Route::put('edit', [UsersController::class, 'update'])->name('users.update');
-        Route::delete('edit', [UsersController::class, 'destroy'])->name('users.destroy');
+        Route::delete('mypage', [UsersController::class, 'destroy'])->name('users.destroy');
     });
 });
 

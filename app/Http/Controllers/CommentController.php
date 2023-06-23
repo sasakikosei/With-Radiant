@@ -21,6 +21,10 @@ class CommentController extends Controller
    {
        $comment = new Comment();
        
+       $request->validate([
+            'comment' => 'required|max:50',
+        ]);
+       
        $comment->comment = $request->comment;
        $comment->recruit_id = $request->recruit_id;
        $comment->watch_id = $request->watch_id;
